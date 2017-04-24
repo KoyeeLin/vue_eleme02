@@ -1,7 +1,5 @@
 <template>
-    <div class="header">
-        我是header 来自header.vue
-    </div>
+    <div>I am goods</div>
 </template>
 
 <script type="text/ecmascript-6">
