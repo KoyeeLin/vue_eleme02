@@ -4,13 +4,18 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App';
 import goods from './components/goods/goods';
-
+import seller from './components/seller/seller';
+import ratings from './components/ratings/ratings';
+import './common/stylus/index.styl';
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
 
 const routes = [
-  {path: '/goods', components: goods}
+  {path: '/', component: goods},
+  {path: '/goods', component: goods},
+  {path: '/seller', component: seller},
+  {path: '/ratings', component: ratings}
 ];
 
 const router = new VueRouter({
