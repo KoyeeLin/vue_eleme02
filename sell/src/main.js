@@ -6,7 +6,6 @@ import App from './App';
 import goods from './components/goods/goods';
 import seller from './components/seller/seller';
 import ratings from './components/ratings/ratings';
-import './common/stylus/index.styl';
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
