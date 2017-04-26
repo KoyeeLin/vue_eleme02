@@ -26,6 +26,10 @@ module.exports = {
     //配置可以保留分号
     'semi': ['error', 'always'],
     //取消缩进配置
-    'indent': 0 
+    'indent': 0 ,
+    //允许在行末尾的空格
+    'no-trailing-spaces': 0,
+    //在函数括号之前需要或不允许空格
+    'space-before-function-paren': 0
   }
 }
