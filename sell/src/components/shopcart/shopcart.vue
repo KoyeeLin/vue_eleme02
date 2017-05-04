@@ -15,6 +15,15 @@
                 <div class="pay" :class="payClass">{{payDesc}}</div>
             </div>
         </div>
+        <div class="ball-container">
+            <div v-for="ball in balls">
+                <transition name="drop">
+                    <div class="ball" v-show="ball.show">
+                        <div class="inner inner-hook"></div>
+                    </div>
+                </transition>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -40,6 +49,28 @@
                 type: Number,
                 default: 0
             }
+        },
+        data() {
+            return {
+                balls: [
+                    {
+                        show: false
+                    },
+                    {
+                        show: false
+                    },
+                    {
+                        show: false
+                    },
+                    {
+                        show: false
+                    },
+                    {
+                        show: false
+                    }
+                ],
+                dropBall: []
+            };
         },
         computed: {
             totalPrice() {
@@ -72,6 +103,20 @@
                 } else {
                     return 'enough';
                 }
+            }
+        },
+        methods: {
+            drop(el) {
+                console.log(el);
+                // for (let i = 0; i < this.balls.length; i++) {
+                //     let ball = this.balls[i];
+                //     if (!ball.show) {
+                //         ball.show = true;
+                //         ball.el = el;
+                //         this.dropBall.push(ball);
+                //     }
+                //     return;
+                // }
             }
         }
     };
@@ -166,4 +211,19 @@
                     &.enough
                         background: #00b43c
                         color: #fff
+            .ball-container
+                .ball
+                    position: fixed
+                    left: 32px
+                    bottom: 22px
+                    z-index: 200
+                    .inner
+                        width: 16px
+                        height: 16px
+                        border-radius: 50%
+                        background: rgb(0, 161, 220)
+                    &.drop-enter-active, &.drop-leave-active
+                        transition: all 0.4s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+                        .inner
+                            transition: all 0.4s linear
 </style>

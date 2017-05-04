@@ -28,7 +28,8 @@
                                     <span class="now">¥{{food.price}}</span><span v-show="food.oldPrice" class="old">¥{{food.oldPrice}}</span>
                                 </div>
                                 <div class="cartcontrol-wrapper">
-                                    <cartcontrol :food="food"></cartcontrol>
+                                    <cartcontrol :food="food"  @cart-add="_drop($event)"></cartcontrol>
+                                    <!--<cartcontrol :food="food"></cartcontrol>-->
                                 </div>
                             </div>
                         </li>
@@ -36,13 +37,13 @@
                 </li>
             </ul>
         </div>
-        <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+        <shopcart ref="shopCart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
     </div>
 </template>
 
 <script>
     import BScroll from 'better-scroll';
-    import shopcart from '../../components/shopcart/shopcart.vue';
+    import shopcart from '../../components/shopcart/shopcart';
     import cartcontrol from '../../components/cartcontrol/cartcontrol';
     const ERR_OK = 0;
 
@@ -69,6 +70,17 @@
                     }
                 }
                 return 0;
+            },
+            selectFoods() {
+                let foods = [];
+                this.goods.forEach((good) => {
+                    good.foods.forEach((food) => {
+                        if (food.count) {
+                            foods.push(food);
+                        }
+                    });
+                });
+                return foods;
             }
         },
         created() {
@@ -119,11 +131,20 @@
                     height += item.clientHeight;
                     this.listHeight.push(height);
                 }
+            },
+            _drop(target) {
+                // 体验优化，异步执行下落动画
+                this.$refs.shopCart.drop(target);
             }
         },
         components: {
             shopcart,
             cartcontrol
+        },
+        events: {
+            'cart.add'(target) {
+                
+            }
         }
     };
 </script>
