@@ -222,7 +222,7 @@
             background: rgba(7, 17, 27, 0.8)  
             &.fade-enter-active, &.fade-leave-active
                 transition: all 0.5s
-            &.fade-enter, &.fade-leave
+            &.fade-enter, &.fade-leave-active
                 opcity: 0
                 background: rgba(7, 17, 27, 0)  
             .detail-wrapper

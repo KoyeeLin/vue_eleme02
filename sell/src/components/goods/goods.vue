@@ -29,7 +29,6 @@
                                 </div>
                                 <div class="cartcontrol-wrapper">
                                     <cartcontrol :food="food"  @cart-add="_drop($event)"></cartcontrol>
-                                    <!--<cartcontrol :food="food"></cartcontrol>-->
                                 </div>
                             </div>
                         </li>
@@ -134,17 +133,14 @@
             },
             _drop(target) {
                 // 体验优化，异步执行下落动画
-                this.$refs.shopCart.drop(target);
+                this.$nextTick(() => {
+                    this.$refs.shopCart.drop(target);
+                });
             }
         },
         components: {
             shopcart,
             cartcontrol
-        },
-        events: {
-            'cart.add'(target) {
-                
-            }
         }
     };
 </script>
